@@ -88,13 +88,17 @@ puppet-codegen:
   * .tests/end2end/data/cluster.pp
   * .tests/end2end/data/delete_cluster.pp
   * .tests/end2end/data/delete_node_pool.pp
+  * .tests/end2end/data/kube_config.pp
   * .tests/end2end/data/node_pool.pp
+  * CHANGELOG.md
   * CONTRIBUTING.md
   * examples/cluster.pp
   * examples/delete_cluster.pp
   * examples/delete_node_pool.pp
+  * examples/kube_config.pp
   * examples/node_pool.pp
   * Gemfile
+  * lib/google/container/api/gcontainer_node_pool.rb
   * lib/google/container/network/base.rb
   * lib/google/container/network/delete.rb
   * lib/google/container/network/get.rb
@@ -123,8 +127,10 @@ puppet-codegen:
   * lib/google/object_store.rb
   * lib/google/string_utils.rb
   * lib/puppet/provider/gcontainer_cluster/google.rb
+  * lib/puppet/provider/gcontainer_kube_config/google.rb
   * lib/puppet/provider/gcontainer_node_pool/google.rb
   * lib/puppet/type/gcontainer_cluster.rb
+  * lib/puppet/type/gcontainer_kube_config.rb
   * lib/puppet/type/gcontainer_node_pool.rb
   * metadata.json
   * README.md
@@ -162,6 +168,9 @@ puppet-codegen:
   * spec/spec_helper.rb
   * spec/string_utils_spec.rb
   * spec/test_constants.rb
+  * tasks/README.md
+  * tasks/resize.json
+  * tasks/resize.rb
 
 The list below contains all the files that were automatically sourced from a
 central location:

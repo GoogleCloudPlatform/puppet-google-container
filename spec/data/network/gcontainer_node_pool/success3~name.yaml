@@ -26,7 +26,6 @@
 # ----------------------------------------------------------------------------
 
 ---
-kind: container#nodePool
 name: test name#2 data
 autoscaling:
   enabled: true

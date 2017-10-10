@@ -26,7 +26,6 @@
 # ----------------------------------------------------------------------------
 
 ---
-kind: container#cluster
 name: test name#0 data
 addonsConfig:
   httpLoadBalancing:

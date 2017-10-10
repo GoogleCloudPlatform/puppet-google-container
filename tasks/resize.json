@@ -1,0 +1,31 @@
+{
+  "description": "Resizes a cluster container node pool",
+  "supports_noop": false,
+  "input_method": "stdin",
+  "parameters": {
+    "name": {
+      "description": "The name of the node pool to resize",
+      "type": "String[1]"
+    },
+    "cluster": {
+      "description": "The name of the cluster that hosts the node pool",
+      "type": "String[1]"
+    },
+    "size": {
+      "description": "The new size of the container (in nodes)",
+      "type": "Integer[1]"
+    },
+    "zone": {
+      "description": "The zone that hosts the container",
+      "type": "String[1]"
+    },
+    "project": {
+      "description": "the project name where the cluster is hosted",
+      "type": "String[1]"
+    },
+    "credential": {
+      "description": "Path to a service account credentials file",
+      "type": "String[1]"
+    }
+  }
+}

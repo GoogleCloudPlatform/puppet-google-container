@@ -1,5 +1,7 @@
 # Google Container Engine Puppet Module
 
+[![Puppet Forge](http://img.shields.io/puppetforge/v/google/gcontainer.svg)](https://forge.puppetlabs.com/google/gcontainer)
+
 #### Table of Contents
 
 1. [Module Description - What the module does and why it is useful](
@@ -8,6 +10,8 @@
 3. [Usage - Configuration options and additional functionality](#usage)
 4. [Reference - An under-the-hood peek at what the module is doing and how](
    #reference)
+    - [Classes](#classes)
+    - [Bolt Tasks](#bolt-tasks)
 5. [Limitations - OS compatibility, etc.](#limitations)
 6. [Development - Guide for contributing to the module](#development)
 
@@ -90,6 +94,31 @@ gcontainer_node_pool { 'web-servers':
 
 ```
 
+#### `gcontainer_kube_config`
+
+```puppet
+# ~/.kube/config is used by Kubernetes client (kubectl)
+gcontainer_kube_config { '/home/nelsona/.kube/config':
+  ensure     => present,
+  context    => "gke-mycluster-${cluster_id}",
+  cluster    => "mycluster-${cluster_id}",
+  zone       => 'us-central1-a',
+  project    => 'google.com:graphite-playground',
+  credential => 'mycred',
+}
+
+# A file named ~/.puppetlabs/etc/puppet/kubernetes is used by the
+# garethr-kubernetes module.
+gcontainer_kube_config { '/home/nelsona/.puppetlabs/etc/puppet/kubernetes.conf':
+  ensure     => present,
+  cluster    => "mycluster-${cluster_id}",
+  zone       => 'us-central1-a',
+  project    => 'google.com:graphite-playground',
+  credential => 'mycred',
+}
+
+```
+
 
 ### Classes
 
@@ -106,6 +135,8 @@ gcontainer_node_pool { 'web-servers':
     reference
     them during pod scheduling. They may also be resized up or down, to
     accommodate the workload.
+* [`gcontainer_kube_config`][]:
+    Generates a compatible Kuberenetes '.kube/config' file
 
 ### About output only properties
 
@@ -682,6 +713,96 @@ Required.  The zone where the node pool is deployed
 * `version`: Output only.
   The version of the Kubernetes of this node.
 
+#### `gcontainer_kube_config`
+
+Generates a compatible Kuberenetes '.kube/config' file
+
+
+#### Example
+
+```puppet
+# ~/.kube/config is used by Kubernetes client (kubectl)
+gcontainer_kube_config { '/home/nelsona/.kube/config':
+  ensure     => present,
+  context    => "gke-mycluster-${cluster_id}",
+  cluster    => "mycluster-${cluster_id}",
+  zone       => 'us-central1-a',
+  project    => 'google.com:graphite-playground',
+  credential => 'mycred',
+}
+
+# A file named ~/.puppetlabs/etc/puppet/kubernetes is used by the
+# garethr-kubernetes module.
+gcontainer_kube_config { '/home/nelsona/.puppetlabs/etc/puppet/kubernetes.conf':
+  ensure     => present,
+  cluster    => "mycluster-${cluster_id}",
+  zone       => 'us-central1-a',
+  project    => 'google.com:graphite-playground',
+  credential => 'mycred',
+}
+
+```
+
+#### Reference
+
+```puppet
+gcontainer_kube_config { 'id-of-resource':
+  cluster    => reference to gcontainer_cluster,
+  context    => string,
+  name       => string,
+  zone       => string,
+  project    => string,
+  credential => reference to gauth_credential,
+}
+```
+
+##### `name`
+
+Required.  The config file kubectl settings will be written to.
+
+##### `cluster`
+
+Required.  A reference to Cluster resource
+
+##### `zone`
+
+Required.  The zone where the container is deployed
+
+##### `context`
+
+Required.  The name of the context. Defaults to cluster name.
+
+
+
+### Bolt Tasks
+
+
+#### `tasks/resize.rb`
+
+  Resizes a cluster container node pool
+
+This task takes inputs as JSON from standard input.
+
+##### Arguments
+
+  - `name`:
+    The name of the node pool to resize
+
+  - `cluster`:
+    The name of the cluster that hosts the node pool
+
+  - `size`:
+    The new size of the container (in nodes)
+
+  - `zone`:
+    The zone that hosts the container
+
+  - `project`:
+    the project name where the cluster is hosted
+
+  - `credential`:
+    Path to a service account credentials file
+
 
 ## Limitations
 
@@ -761,3 +882,4 @@ Variable                | Side Effect
 [rubocop]: https://rubocop.readthedocs.io/en/latest/
 [`gcontainer_cluster`]: #gcontainer_cluster
 [`gcontainer_node_pool`]: #gcontainer_node_pool
+[`gcontainer_kube_config`]: #gcontainer_kube_config

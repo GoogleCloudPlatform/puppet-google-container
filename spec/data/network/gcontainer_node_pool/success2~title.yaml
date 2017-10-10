@@ -26,7 +26,6 @@
 # ----------------------------------------------------------------------------
 
 ---
-kind: container#nodePool
 name: title1
 autoscaling:
   enabled: false

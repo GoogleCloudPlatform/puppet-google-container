@@ -39,30 +39,34 @@ require 'google/container/property/time'
 require 'puppet'
 
 Puppet::Type.newtype(:gcontainer_node_pool) do
-  @doc = <<-EOT
+  @doc = <<-DOC
     NodePool contains the name and configuration for a cluster's node pool.
     Node pools are a set of nodes (i.e. VM's), with a common configuration and
     specification, under the control of the cluster master. They may have a set
     of Kubernetes labels applied to them, which may be used to reference them
     during pod scheduling. They may also be resized up or down, to accommodate
     the workload.
-  EOT
+  DOC
 
   autorequire(:gauth_credential) do
-    [self[:credential]]
+    credential = self[:credential]
+    raise "#{ref}: required property 'credential' is missing" if credential.nil?
+    [credential]
   end
 
   autorequire(:gcontainer_cluster) do
-    self[:cluster].autorequires
+    reference = self[:cluster]
+    raise "#{ref} required property 'cluster' is missing" if reference.nil?
+    reference.autorequires
   end
 
   ensurable
 
   newparam :credential do
-    desc <<-EOT
+    desc <<-DESC
       A gauth_credential name to be used to authenticate with Google Cloud
       Platform.
-    EOT
+    DESC
   end
 
   newparam(:project) do
@@ -92,11 +96,11 @@ Puppet::Type.newtype(:gcontainer_node_pool) do
 
   newproperty(:initial_node_count,
               parent: Google::Container::Property::Integer) do
-    desc <<-EOT
+    desc <<-DOC
       The initial node count for the pool. You must ensure that your Compute
       Engine resource quota is sufficient for this number of instances. You
       must also have available firewall and routes quota.
-    EOT
+    DOC
   end
 
   newproperty(:version, parent: Google::Container::Property::String) do
@@ -105,10 +109,10 @@ Puppet::Type.newtype(:gcontainer_node_pool) do
 
   newproperty(:autoscaling,
               parent: Google::Container::Property::NodePoolAutosca) do
-    desc <<-EOT
+    desc <<-DOC
       Autoscaler configuration for this NodePool. Autoscaler is enabled only if
       a valid configuration is present.
-    EOT
+    DOC
   end
 
   newproperty(:management,

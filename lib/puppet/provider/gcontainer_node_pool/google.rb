@@ -60,8 +60,7 @@ Puppet::Type.type(:gcontainer_node_pool).provide(:google) do
       project = resource[:project]
       debug("prefetch #{name}") if project.nil?
       debug("prefetch #{name} @ #{project}") unless project.nil?
-      fetch = fetch_resource(resource, self_link(resource),
-                             'container#nodePool')
+      fetch = fetch_resource(resource, self_link(resource))
       resource.provider = present(name, fetch, resource) unless fetch.nil?
     end
   end
@@ -139,7 +138,6 @@ Puppet::Type.type(:gcontainer_node_pool).provide(:google) do
     {
       project: resource[:project],
       name: resource[:name],
-      kind: 'container#nodePool',
       config: resource[:config],
       initial_node_count: resource[:initial_node_count],
       version: resource[:version],
@@ -152,7 +150,6 @@ Puppet::Type.type(:gcontainer_node_pool).provide(:google) do
 
   def resource_to_request
     request = {
-      kind: 'container#nodePool',
       name: @resource[:name],
       config: @resource[:config],
       initialNodeCount: @resource[:initial_node_count],
@@ -213,21 +210,21 @@ Puppet::Type.type(:gcontainer_node_pool).provide(:google) do
     self.class.self_link(data)
   end
 
-  def self.return_if_object(response, kind)
+  def self.return_if_object(response)
+    raise "Bad response: #{response.body}" \
+      if response.is_a?(Net::HTTPBadRequest)
     raise "Bad response: #{response}" \
       unless response.is_a?(Net::HTTPResponse)
     return if response.is_a?(Net::HTTPNotFound)
     return if response.is_a?(Net::HTTPNoContent)
-    result = decode_response(response, kind)
+    result = JSON.parse(response.body)
     raise_if_errors result, %w[error errors], 'message'
     raise "Bad response: #{response}" unless response.is_a?(Net::HTTPOK)
-    raise "Incorrect result: #{result['kind']} (expected '#{kind}')" \
-      unless result['kind'] == kind
     result
   end
 
-  def return_if_object(response, kind)
-    self.class.return_if_object(response, kind)
+  def return_if_object(response)
+    self.class.return_if_object(response)
   end
 
   def self.extract_variables(template)
@@ -254,8 +251,8 @@ Puppet::Type.type(:gcontainer_node_pool).provide(:google) do
     self.class.expand_variables(template, var_data, extra_data)
   end
 
-  def fetch_resource(resource, self_link, kind)
-    self.class.fetch_resource(resource, self_link, kind)
+  def fetch_resource(resource, self_link)
+    self.class.fetch_resource(resource, self_link)
   end
 
   def async_op_url(data, extra_data = {})
@@ -269,7 +266,7 @@ Puppet::Type.type(:gcontainer_node_pool).provide(:google) do
   end
 
   def wait_for_operation(response, resource)
-    op_result = return_if_object(response, 'container#operation')
+    op_result = return_if_object(response)
     return if op_result.nil?
     status = ::Google::HashUtils.navigate(op_result, %w[status])
     fetch_resource(
@@ -277,8 +274,7 @@ Puppet::Type.type(:gcontainer_node_pool).provide(:google) do
       URI.parse(::Google::HashUtils.navigate(wait_for_completion(status,
                                                                  op_result,
                                                                  resource),
-                                             %w[targetLink])),
-      'container#nodePool'
+                                             %w[targetLink]))
     )
   end
 
@@ -291,7 +287,7 @@ Puppet::Type.type(:gcontainer_node_pool).provide(:google) do
       sleep 1.0
       raise "Invalid result '#{status}' on gcontainer_node_pool." \
         unless %w[PENDING RUNNING DONE ABORTING].include?(status)
-      op_result = fetch_resource(resource, op_uri, 'container#operation')
+      op_result = fetch_resource(resource, op_uri)
       status = ::Google::HashUtils.navigate(op_result, %w[status])
     end
     op_result
@@ -313,7 +309,7 @@ Puppet::Type.type(:gcontainer_node_pool).provide(:google) do
   # Format the request to match the expected input by the API
   def self.encode_request(resource_request)
     {
-      'nodePool' => resource_request.reject { |k, _v| k.to_sym == :kind }
+      'nodePool' => resource_request
     }
   end
 
@@ -321,18 +317,11 @@ Puppet::Type.type(:gcontainer_node_pool).provide(:google) do
     self.class.encode_request(resource_request)
   end
 
-  # Tags response with the appropriate kind for data validation
-  def self.decode_response(response, kind)
-    result = JSON.parse(response.body)
-    result['kind'] = kind
-    result
-  end
-
-  def self.fetch_resource(resource, self_link, kind)
+  def self.fetch_resource(resource, self_link)
     get_request = ::Google::Container::Network::Get.new(
       self_link, fetch_auth(resource)
     )
-    return_if_object get_request.send, kind
+    return_if_object get_request.send
   end
 
   def self.raise_if_errors(response, err_path, msg_field)

@@ -633,7 +633,6 @@ describe Puppet::Type.type(:gcontainer_node_pool).provider(:google) do
             expect_network_create \
               1,
               {
-                'kind' => 'container#nodePool',
                 'name' => 'title0',
                 'config' => {
                   'machineType' => 'test machine_type#0 data',
@@ -753,7 +752,6 @@ describe Puppet::Type.type(:gcontainer_node_pool).provider(:google) do
             expect_network_create \
               1,
               {
-                'kind' => 'container#nodePool',
                 'name' => 'test name#0 data',
                 'config' => {
                   'machineType' => 'test machine_type#0 data',
@@ -871,7 +869,9 @@ describe Puppet::Type.type(:gcontainer_node_pool).provider(:google) do
         # Ensure absent: resource missing, ignore, no name, pass
         context 'title == name (pass)' do
           before(:each) do
-            expect_network_get_failed 1, name: 'title0'
+            expect_network_get_failed 1,
+                                      name: 'title0',
+                                      cluster: 'test name#0 data'
             expect_network_get_success_cluster 1
           end
 
@@ -916,7 +916,7 @@ describe Puppet::Type.type(:gcontainer_node_pool).provider(:google) do
         # Ensure absent: resource missing, ignore, has name, pass
         context 'title != name (pass)' do
           before(:each) do
-            expect_network_get_failed 1
+            expect_network_get_failed 1, cluster: 'test name#0 data'
             expect_network_get_success_cluster 1
           end
 
@@ -964,7 +964,9 @@ describe Puppet::Type.type(:gcontainer_node_pool).provider(:google) do
         # Ensure absent: resource exists, ignore, no name, pass
         context 'title == name (pass)' do
           before(:each) do
-            expect_network_get_success 1, name: 'title0'
+            expect_network_get_success 1,
+                                       name: 'title0',
+                                       cluster: 'test name#0 data'
             expect_network_delete 1, 'title0', cluster: 'test name#0 data'
             expect_network_get_async 1,
                                      name: 'title0',
@@ -1013,7 +1015,7 @@ describe Puppet::Type.type(:gcontainer_node_pool).provider(:google) do
         # Ensure absent: resource exists, ignore, has name, pass
         context 'title != name (pass)' do
           before(:each) do
-            expect_network_get_success 1
+            expect_network_get_success 1, cluster: 'test name#0 data'
             expect_network_delete 1, nil, cluster: 'test name#0 data'
             expect_network_get_async 1, cluster: 'test name#0 data'
             expect_network_get_success_cluster 1
@@ -1109,7 +1111,7 @@ describe Puppet::Type.type(:gcontainer_node_pool).provider(:google) do
   end
 
   def expect_network_get_async(id, data = {})
-    body = { kind: 'container#nodePool' }.to_json
+    body = {}.to_json
 
     request = double('request')
     allow(request).to receive(:send).and_return(http_success(body))

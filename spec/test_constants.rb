@@ -89,5 +89,14 @@ module GoogleTests
       'test name#3 data',
       'test name#4 data'
     ].freeze
+
+    # Constants for: KubeConfig.name
+    KC_NAME_DATA = [
+      'test name#0 data',
+      'test name#1 data',
+      'test name#2 data',
+      'test name#3 data',
+      'test name#4 data'
+    ].freeze
   end
 end

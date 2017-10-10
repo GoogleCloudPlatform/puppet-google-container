@@ -26,7 +26,6 @@
 # ----------------------------------------------------------------------------
 
 ---
-kind: container#cluster
 name: title2
 addonsConfig:
   httpLoadBalancing:

@@ -44,16 +44,18 @@ Puppet::Type.newtype(:gcontainer_cluster) do
   @doc = 'A Google Container Engine cluster.'
 
   autorequire(:gauth_credential) do
-    [self[:credential]]
+    credential = self[:credential]
+    raise "#{ref}: required property 'credential' is missing" if credential.nil?
+    [credential]
   end
 
   ensurable
 
   newparam :credential do
-    desc <<-EOT
+    desc <<-DESC
       A gauth_credential name to be used to authenticate with Google Cloud
       Platform.
-    EOT
+    DESC
   end
 
   newparam(:project) do
@@ -70,12 +72,12 @@ Puppet::Type.newtype(:gcontainer_cluster) do
   end
 
   newproperty(:name, parent: Google::Container::Property::String) do
-    desc <<-EOT
+    desc <<-DOC
       The name of this cluster. The name must be unique within this project and
       zone, and can be up to 40 characters with the following restrictions: *
       Lowercase letters, numbers, and hyphens only. * Must start with a letter.
       * Must end with a number or a letter.
-    EOT
+    DOC
   end
 
   newproperty(:description, parent: Google::Container::Property::String) do
@@ -84,7 +86,7 @@ Puppet::Type.newtype(:gcontainer_cluster) do
 
   newproperty(:initial_node_count,
               parent: Google::Container::Property::Integer) do
-    desc <<-EOT
+    desc <<-DOC
       The number of nodes to create in this cluster. You must ensure that your
       Compute Engine resource quota is sufficient for this number of instances.
       You must also have available firewall and routes quota. For requests,
@@ -92,12 +94,12 @@ Puppet::Type.newtype(:gcontainer_cluster) do
       configuration (along with the "nodeConfig") will be used to create a
       "NodePool" object with an auto-generated name. Do not use this and a
       nodePool at the same time.
-    EOT
+    DOC
   end
 
   newproperty(:node_config,
               parent: Google::Container::Property::ClusterNodeConfig) do
-    desc <<-EOT
+    desc <<-DOC
       Parameters used in creating the cluster's nodes. For requests, this field
       should only be used in lieu of a "nodePool" object, since this
       configuration (along with the "initialNodeCount") will be used to create
@@ -105,7 +107,7 @@ Puppet::Type.newtype(:gcontainer_cluster) do
       nodePool at the same time. For responses, this field will be populated
       with the node configuration of the first node pool. If unspecified, the
       defaults are used.
-    EOT
+    DOC
   end
 
   newproperty(:master_auth,
@@ -114,83 +116,83 @@ Puppet::Type.newtype(:gcontainer_cluster) do
   end
 
   newproperty(:logging_service, parent: Google::Container::Property::Enum) do
-    desc <<-EOT
+    desc <<-DOC
       The logging service the cluster should use to write logs. Currently
       available options: * logging.googleapis.com - the Google Cloud Logging
       service. * none - no logs will be exported from the cluster. if left as
       an empty string,logging.googleapis.com will be used.
-    EOT
+    DOC
     newvalue('logging.googleapis.com')
     newvalue('none')
   end
 
   newproperty(:monitoring_service, parent: Google::Container::Property::Enum) do
-    desc <<-EOT
+    desc <<-DOC
       The monitoring service the cluster should use to write metrics. Currently
       available options: * monitoring.googleapis.com - the Google Cloud
       Monitoring service. * none - no metrics will be exported from the
       cluster. if left as an empty string, monitoring.googleapis.com will be
       used.
-    EOT
+    DOC
     newvalue('monitoring.googleapis.com')
     newvalue('none')
   end
 
   newproperty(:network, parent: Google::Container::Property::String) do
-    desc <<-EOT
+    desc <<-DOC
       The name of the Google Compute Engine network to which the cluster is
       connected. If left unspecified, the default network will be used. * Tip:
       To ensure it exists and it is operations, configure the network  using
       'gcompute_network' resource.
-    EOT
+    DOC
   end
 
   newproperty(:cluster_ipv4_cidr,
               parent: Google::Container::Property::String) do
-    desc <<-EOT
+    desc <<-DOC
       The IP address range of the container pods in this cluster, in CIDR
       notation (e.g. 10.96.0.0/14). Leave blank to have one automatically
       chosen or specify a /14 block in 10.0.0.0/8.
-    EOT
+    DOC
   end
 
   newproperty(:addons_config,
               parent: Google::Container::Property::ClusterAddonsConfig) do
-    desc <<-EOT
+    desc <<-DOC
       Configurations for the various addons available to run in the cluster.
-    EOT
+    DOC
   end
 
   newproperty(:subnetwork, parent: Google::Container::Property::String) do
-    desc <<-EOT
+    desc <<-DOC
       The name of the Google Compute Engine subnetwork to which the cluster is
       connected.
-    EOT
+    DOC
   end
 
   newproperty(:location, parent: Google::Container::Property::StringArray) do
-    desc <<-EOT
+    desc <<-DOC
       The list of Google Compute Engine locations in which the cluster's nodes
       should be located.
-    EOT
+    DOC
   end
 
   newproperty(:endpoint, parent: Google::Container::Property::String) do
-    desc <<-EOT
+    desc <<-DOC
       The IP address of this cluster's master endpoint. The endpoint can be
       accessed from the internet at https://username:password@endpoint/ See the
       masterAuth property of this resource for username and password
       information. (output only)
-    EOT
+    DOC
   end
 
   newproperty(:initial_cluster_version,
               parent: Google::Container::Property::String) do
-    desc <<-EOT
+    desc <<-DOC
       The software version of the master endpoint and kubelets used in the
       cluster when it was first created. The version can be upgraded over time.
       (output only)
-    EOT
+    DOC
   end
 
   newproperty(:current_master_version,
@@ -200,34 +202,34 @@ Puppet::Type.newtype(:gcontainer_cluster) do
 
   newproperty(:current_node_version,
               parent: Google::Container::Property::String) do
-    desc <<-EOT
+    desc <<-DOC
       The current version of the node software components. If they are
       currently at multiple versions because they're in the process of being
       upgraded, this reflects the minimum version of all nodes. (output only)
-    EOT
+    DOC
   end
 
   newproperty(:create_time, parent: Google::Container::Property::Time) do
-    desc <<-EOT
+    desc <<-DOC
       The time the cluster was created, in RFC3339 text format. (output only)
-    EOT
+    DOC
   end
 
   newproperty(:node_ipv4_cidr_size,
               parent: Google::Container::Property::Integer) do
-    desc <<-EOT
+    desc <<-DOC
       The size of the address space on each node for hosting containers. This
       is provisioned from within the container_ipv4_cidr range. (output only)
-    EOT
+    DOC
   end
 
   newproperty(:services_ipv4_cidr,
               parent: Google::Container::Property::String) do
-    desc <<-EOT
+    desc <<-DOC
       The IP address range of the Kubernetes services in this cluster, in CIDR
       notation (e.g. 1.2.3.4/29). Service addresses are typically put in the
       last /16 from the container CIDR. (output only)
-    EOT
+    DOC
   end
 
   newproperty(:current_node_count,
@@ -236,10 +238,10 @@ Puppet::Type.newtype(:gcontainer_cluster) do
   end
 
   newproperty(:expire_time, parent: Google::Container::Property::Time) do
-    desc <<-EOT
+    desc <<-DOC
       The time the cluster will be automatically deleted in RFC3339 text
       format. (output only)
-    EOT
+    DOC
   end
 
   # Returns all properties that a provider can export to other resources
