@@ -13,7 +13,7 @@
     },
     "size": {
       "description": "The new size of the container (in nodes)",
-      "type": "Integer[1]"
+      "type": "Integer"
     },
     "zone": {
       "description": "The zone that hosts the container",

@@ -85,11 +85,11 @@ puppet-codegen:
 
   * .gitignore
   * .rubocop.yml
-  * .tests/end2end/data/cluster.pp
-  * .tests/end2end/data/delete_cluster.pp
-  * .tests/end2end/data/delete_node_pool.pp
-  * .tests/end2end/data/kube_config.pp
-  * .tests/end2end/data/node_pool.pp
+  * .tools/end2end/data/cluster.pp
+  * .tools/end2end/data/delete_cluster.pp
+  * .tools/end2end/data/delete_node_pool.pp
+  * .tools/end2end/data/kube_config.pp
+  * .tools/end2end/data/node_pool.pp
   * CHANGELOG.md
   * CONTRIBUTING.md
   * examples/cluster.pp
@@ -175,7 +175,7 @@ puppet-codegen:
 The list below contains all the files that were automatically sourced from a
 central location:
 
-  * .tests/README.md
+  * .tools/README.md
   * Gemfile.lock
   * LICENSE
   * spec/data/poor_example.pp
