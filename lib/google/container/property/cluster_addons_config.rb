@@ -1,4 +1,4 @@
-# Copyright 2017 Google Inc.
+# Copyright 2018 Google Inc.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -30,7 +30,7 @@ require 'google/container/property/base'
 module Google
   module Container
     module Data
-      # A class to manage data for addons_config for cluster.
+      # A class to manage data for AddonsConfig for cluster.
       class ClusterAddonsConfig
         include Comparable
 
@@ -115,7 +115,7 @@ module Google
     end
 
     module Property
-      # A class to manage input to addons_config for cluster.
+      # A class to manage input to AddonsConfig for cluster.
       class ClusterAddonsConfig < Google::Container::Property::Base
         # Used for parsing Puppet catalog
         def unsafe_munge(value)

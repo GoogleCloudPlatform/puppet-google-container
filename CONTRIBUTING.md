@@ -123,9 +123,6 @@ puppet-codegen:
   * lib/google/container/property/string.rb
   * lib/google/container/property/string_array.rb
   * lib/google/container/property/time.rb
-  * lib/google/hash_utils.rb
-  * lib/google/object_store.rb
-  * lib/google/string_utils.rb
   * lib/puppet/provider/gcontainer_cluster/google.rb
   * lib/puppet/provider/gcontainer_kube_config/google.rb
   * lib/puppet/provider/gcontainer_node_pool/google.rb
@@ -136,12 +133,6 @@ puppet-codegen:
   * README.md
   * spec/.rubocop.yml
   * spec/bundle.rb
-  * spec/copyright.rb
-  * spec/copyright_spec.rb
-  * spec/data/copyright_bad1.rb
-  * spec/data/copyright_bad2.rb
-  * spec/data/copyright_good1.rb
-  * spec/data/copyright_good2.rb
   * spec/data/network/gcontainer_cluster/success1~name.yaml
   * spec/data/network/gcontainer_cluster/success1~title.yaml
   * spec/data/network/gcontainer_cluster/success2~name.yaml
@@ -157,7 +148,6 @@ puppet-codegen:
   * spec/fake_auth.rb
   * spec/gcontainer_cluster_provider_spec.rb
   * spec/gcontainer_node_pool_provider_spec.rb
-  * spec/hash_utils_spec.rb
   * spec/network_blocker.rb
   * spec/network_blocker_spec.rb
   * spec/network_delete_spec.rb
@@ -166,7 +156,6 @@ puppet-codegen:
   * spec/network_put_spec.rb
   * spec/puppetlint_spec.rb
   * spec/spec_helper.rb
-  * spec/string_utils_spec.rb
   * spec/test_constants.rb
   * tasks/README.md
   * tasks/resize.json
@@ -177,8 +166,19 @@ central location:
 
   * .tools/README.md
   * Gemfile.lock
+  * lib/google/hash_utils.rb
+  * lib/google/object_store.rb
+  * lib/google/string_utils.rb
   * LICENSE
+  * spec/copyright.rb
+  * spec/copyright_spec.rb
+  * spec/data/copyright_bad1.rb
+  * spec/data/copyright_bad2.rb
+  * spec/data/copyright_good1.rb
+  * spec/data/copyright_good2.rb
   * spec/data/poor_example.pp
+  * spec/hash_utils_spec.rb
+  * spec/string_utils_spec.rb
 
 [ruby-style-guide]: https://github.com/bbatsov/ruby-style-guide
 [rubocop]: https://rubocop.readthedocs.io/en/latest/

@@ -72,7 +72,7 @@ gcontainer_cluster { "mycluster-${cluster_id}":
     disk_size_gb => 500,             # ... and a lot of disk space
   },
   zone               => 'us-central1-a',
-  project            => 'google.com:graphite-playground',
+  project            => $project, # e.g. 'my-test-project'
   credential         => 'mycred',
 }
 
@@ -88,7 +88,7 @@ gcontainer_node_pool { 'web-servers':
   initial_node_count => 4,
   cluster            => "mycluster-${cluster_id}",
   zone               => 'us-central1-a',
-  project            => 'google.com:graphite-playground',
+  project            => $project, # e.g. 'my-test-project'
   credential         => 'mycred',
 }
 
@@ -103,7 +103,7 @@ gcontainer_kube_config { '/home/nelsona/.kube/config':
   context    => "gke-mycluster-${cluster_id}",
   cluster    => "mycluster-${cluster_id}",
   zone       => 'us-central1-a',
-  project    => 'google.com:graphite-playground',
+  project    => $project, # e.g. 'my-test-project'
   credential => 'mycred',
 }
 
@@ -113,7 +113,7 @@ gcontainer_kube_config { '/home/nelsona/.puppetlabs/etc/puppet/kubernetes.conf':
   ensure     => present,
   cluster    => "mycluster-${cluster_id}",
   zone       => 'us-central1-a',
-  project    => 'google.com:graphite-playground',
+  project    => $project, # e.g. 'my-test-project'
   credential => 'mycred',
 }
 
@@ -174,7 +174,7 @@ gcontainer_cluster { "mycluster-${cluster_id}":
     disk_size_gb => 500,             # ... and a lot of disk space
   },
   zone               => 'us-central1-a',
-  project            => 'google.com:graphite-playground',
+  project            => $project, # e.g. 'my-test-project'
   credential         => 'mycred',
 }
 
@@ -339,8 +339,7 @@ Required.  The number of nodes to create in this cluster. You must ensure that
   The number of local SSD disks to be attached to the node.
   The limit for this value is dependant upon the maximum number of
   disks available on a machine per zone. See:
-  https://cloud.google.com/compute/docs/disks/
-  local-ssd#local_ssd_limits
+  https://cloud.google.com/compute/docs/disks/local-ssd#local_ssd_limits
   for more information.
 
 ##### node_config/tags
@@ -509,7 +508,7 @@ gcontainer_node_pool { 'web-servers':
   initial_node_count => 4,
   cluster            => "mycluster-${cluster_id}",
   zone               => 'us-central1-a',
-  project            => 'google.com:graphite-playground',
+  project            => $project, # e.g. 'my-test-project'
   credential         => 'mycred',
 }
 
@@ -632,8 +631,7 @@ gcontainer_node_pool { 'id-of-resource':
   The number of local SSD disks to be attached to the node.
   The limit for this value is dependant upon the maximum number of
   disks available on a machine per zone. See:
-  https://cloud.google.com/compute/docs/disks/
-  local-ssd#local_ssd_limits
+  https://cloud.google.com/compute/docs/disks/local-ssd#local_ssd_limits
   for more information.
 
 ##### config/tags
@@ -699,7 +697,7 @@ Output only.  This field is set when upgrades are about to commence with the
 
 ##### `cluster`
 
-Required.  A reference to Cluster resource
+Required.  The cluster this node pool belongs to.
 
 ##### `zone`
 
@@ -725,7 +723,7 @@ gcontainer_kube_config { '/home/nelsona/.kube/config':
   context    => "gke-mycluster-${cluster_id}",
   cluster    => "mycluster-${cluster_id}",
   zone       => 'us-central1-a',
-  project    => 'google.com:graphite-playground',
+  project    => $project, # e.g. 'my-test-project'
   credential => 'mycred',
 }
 
@@ -735,7 +733,7 @@ gcontainer_kube_config { '/home/nelsona/.puppetlabs/etc/puppet/kubernetes.conf':
   ensure     => present,
   cluster    => "mycluster-${cluster_id}",
   zone       => 'us-central1-a',
-  project    => 'google.com:graphite-playground',
+  project    => $project, # e.g. 'my-test-project'
   credential => 'mycred',
 }
 
