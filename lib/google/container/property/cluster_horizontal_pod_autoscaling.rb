@@ -80,8 +80,7 @@ module Google
       # Data is coming from the GCP API
       class ClustHorizPodAutosApi < ClustHorizPodAutos
         def initialize(args)
-          @disabled =
-            Google::Container::Property::Boolean.api_munge(args['disabled'])
+          @disabled = Google::Container::Property::Boolean.api_munge(args['disabled'])
         end
       end
 
@@ -89,8 +88,7 @@ module Google
       # Data is coming from the Puppet manifest
       class ClustHorizPodAutosCatalog < ClustHorizPodAutos
         def initialize(args)
-          @disabled =
-            Google::Container::Property::Boolean.unsafe_munge(args['disabled'])
+          @disabled = Google::Container::Property::Boolean.unsafe_munge(args['disabled'])
         end
       end
     end

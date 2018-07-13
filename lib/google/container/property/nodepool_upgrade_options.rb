@@ -74,10 +74,7 @@ module Google
 
         def compare_fields(other)
           [
-            {
-              self: auto_upgrade_start_time,
-              other: other.auto_upgrade_start_time
-            },
+            { self: auto_upgrade_start_time, other: other.auto_upgrade_start_time },
             { self: description, other: other.description }
           ]
         end
@@ -88,11 +85,8 @@ module Google
       class NodePoolUpgraOptioApi < NodePoolUpgraOptio
         def initialize(args)
           @auto_upgrade_start_time =
-            Google::Container::Property::Time.api_munge(
-              args['autoUpgradeStartTime']
-            )
-          @description =
-            Google::Container::Property::String.api_munge(args['description'])
+            Google::Container::Property::Time.api_munge(args['autoUpgradeStartTime'])
+          @description = Google::Container::Property::String.api_munge(args['description'])
         end
       end
 
@@ -101,12 +95,8 @@ module Google
       class NodePoolUpgraOptioCatalog < NodePoolUpgraOptio
         def initialize(args)
           @auto_upgrade_start_time =
-            Google::Container::Property::Time.unsafe_munge(
-              args['auto_upgrade_start_time']
-            )
-          @description = Google::Container::Property::String.unsafe_munge(
-            args['description']
-          )
+            Google::Container::Property::Time.unsafe_munge(args['auto_upgrade_start_time'])
+          @description = Google::Container::Property::String.unsafe_munge(args['description'])
         end
       end
     end

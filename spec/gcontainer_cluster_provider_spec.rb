@@ -220,14 +220,8 @@ describe Puppet::Type.type(:gcontainer_cluster).provider(:google) do
               end
 
               it { is_expected.to have_attributes(name: 'title0') }
-              it do
-                is_expected
-                  .to have_attributes(description: 'test description#0 data')
-              end
-              it do
-                is_expected
-                  .to have_attributes(initial_node_count: 1_911_672_831)
-              end
+              it { is_expected.to have_attributes(description: 'test description#0 data') }
+              it { is_expected.to have_attributes(initial_node_count: 1_911_672_831) }
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'nodeConfig' do
               #   # Add test code here
@@ -236,81 +230,45 @@ describe Puppet::Type.type(:gcontainer_cluster).provider(:google) do
               # it 'masterAuth' do
               #   # Add test code here
               # end
+              it { is_expected.to have_attributes(logging_service: 'logging.googleapis.com') }
+              it { is_expected.to have_attributes(monitoring_service: 'monitoring.googleapis.com') }
+              it { is_expected.to have_attributes(network: 'test network#0 data') }
               it do
-                is_expected
-                  .to have_attributes(logging_service: 'logging.googleapis.com')
-              end
-              it do
-                is_expected
-                  .to have_attributes(
-                    monitoring_service: 'monitoring.googleapis.com'
-                  )
-              end
-              it do
-                is_expected.to have_attributes(network: 'test network#0 data')
-              end
-              it do
-                is_expected
-                  .to have_attributes(
-                    cluster_ipv4_cidr: 'test cluster_ipv4_cidr#0 data'
-                  )
+                is_expected.to have_attributes(cluster_ipv4_cidr: 'test cluster_ipv4_cidr#0 data')
               end
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'addonsConfig' do
               #   # Add test code here
               # end
-              it do
-                is_expected
-                  .to have_attributes(subnetwork: 'test subnetwork#0 data')
-              end
+              it { is_expected.to have_attributes(subnetwork: 'test subnetwork#0 data') }
               it { is_expected.to have_attributes(location: %w[qq rr ss tt]) }
-              it do
-                is_expected.to have_attributes(endpoint: 'test endpoint#0 data')
-              end
+              it { is_expected.to have_attributes(endpoint: 'test endpoint#0 data') }
               it do
                 is_expected
                   .to have_attributes(
-                    initial_cluster_version:
-                    'test initial_cluster_version#0 data'
+                    initial_cluster_version: 'test initial_cluster_version#0 data'
                   )
               end
               it do
                 is_expected
-                  .to have_attributes(
-                    current_master_version: 'test current_master_version#0 data'
-                  )
+                  .to have_attributes(current_master_version: 'test current_master_version#0 data')
               end
               it do
                 is_expected
-                  .to have_attributes(
-                    current_node_version: 'test current_node_version#0 data'
-                  )
+                  .to have_attributes(current_node_version: 'test current_node_version#0 data')
               end
               it do
                 is_expected
-                  .to have_attributes(
-                    create_time: ::Time.parse('2026-01-08T17:18:36+00:00')
-                  )
+                  .to have_attributes(create_time: ::Time.parse('2026-01-08T17:18:36+00:00'))
               end
+              it { is_expected.to have_attributes(node_ipv4_cidr_size: 1_101_416_789) }
+              it do
+                is_expected.to have_attributes(services_ipv4_cidr: 'test services_ipv4_cidr#0 data')
+              end
+              it { is_expected.to have_attributes(current_node_count: 2_695_676_071) }
               it do
                 is_expected
-                  .to have_attributes(node_ipv4_cidr_size: 1_101_416_789)
-              end
-              it do
-                is_expected
-                  .to have_attributes(
-                    services_ipv4_cidr: 'test services_ipv4_cidr#0 data'
-                  )
-              end
-              it do
-                is_expected
-                  .to have_attributes(current_node_count: 2_695_676_071)
-              end
-              it do
-                is_expected
-                  .to have_attributes(
-                    expire_time: ::Time.parse('2045-09-24T15:42:41+00:00')
-                  )
+                  .to have_attributes(expire_time: ::Time.parse('2045-09-24T15:42:41+00:00'))
               end
             end
 
@@ -320,14 +278,8 @@ describe Puppet::Type.type(:gcontainer_cluster).provider(:google) do
               end
 
               it { is_expected.to have_attributes(name: 'title1') }
-              it do
-                is_expected
-                  .to have_attributes(description: 'test description#1 data')
-              end
-              it do
-                is_expected
-                  .to have_attributes(initial_node_count: 3_823_345_662)
-              end
+              it { is_expected.to have_attributes(description: 'test description#1 data') }
+              it { is_expected.to have_attributes(initial_node_count: 3_823_345_662) }
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'nodeConfig' do
               #   # Add test code here
@@ -338,71 +290,43 @@ describe Puppet::Type.type(:gcontainer_cluster).provider(:google) do
               # end
               it { is_expected.to have_attributes(logging_service: 'none') }
               it { is_expected.to have_attributes(monitoring_service: 'none') }
+              it { is_expected.to have_attributes(network: 'test network#1 data') }
               it do
-                is_expected.to have_attributes(network: 'test network#1 data')
-              end
-              it do
-                is_expected
-                  .to have_attributes(
-                    cluster_ipv4_cidr: 'test cluster_ipv4_cidr#1 data'
-                  )
+                is_expected.to have_attributes(cluster_ipv4_cidr: 'test cluster_ipv4_cidr#1 data')
               end
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'addonsConfig' do
               #   # Add test code here
               # end
-              it do
-                is_expected
-                  .to have_attributes(subnetwork: 'test subnetwork#1 data')
-              end
+              it { is_expected.to have_attributes(subnetwork: 'test subnetwork#1 data') }
               it { is_expected.to have_attributes(location: %w[jj kk ll]) }
-              it do
-                is_expected.to have_attributes(endpoint: 'test endpoint#1 data')
-              end
+              it { is_expected.to have_attributes(endpoint: 'test endpoint#1 data') }
               it do
                 is_expected
                   .to have_attributes(
-                    initial_cluster_version:
-                    'test initial_cluster_version#1 data'
+                    initial_cluster_version: 'test initial_cluster_version#1 data'
                   )
               end
               it do
                 is_expected
-                  .to have_attributes(
-                    current_master_version: 'test current_master_version#1 data'
-                  )
+                  .to have_attributes(current_master_version: 'test current_master_version#1 data')
               end
               it do
                 is_expected
-                  .to have_attributes(
-                    current_node_version: 'test current_node_version#1 data'
-                  )
+                  .to have_attributes(current_node_version: 'test current_node_version#1 data')
               end
               it do
                 is_expected
-                  .to have_attributes(
-                    create_time: ::Time.parse('2082-01-16T10:37:12+00:00')
-                  )
+                  .to have_attributes(create_time: ::Time.parse('2082-01-16T10:37:12+00:00'))
               end
+              it { is_expected.to have_attributes(node_ipv4_cidr_size: 2_202_833_579) }
+              it do
+                is_expected.to have_attributes(services_ipv4_cidr: 'test services_ipv4_cidr#1 data')
+              end
+              it { is_expected.to have_attributes(current_node_count: 5_391_352_143) }
               it do
                 is_expected
-                  .to have_attributes(node_ipv4_cidr_size: 2_202_833_579)
-              end
-              it do
-                is_expected
-                  .to have_attributes(
-                    services_ipv4_cidr: 'test services_ipv4_cidr#1 data'
-                  )
-              end
-              it do
-                is_expected
-                  .to have_attributes(current_node_count: 5_391_352_143)
-              end
-              it do
-                is_expected
-                  .to have_attributes(
-                    expire_time: ::Time.parse('2121-06-19T07:25:23+00:00')
-                  )
+                  .to have_attributes(expire_time: ::Time.parse('2121-06-19T07:25:23+00:00'))
               end
             end
 
@@ -412,14 +336,8 @@ describe Puppet::Type.type(:gcontainer_cluster).provider(:google) do
               end
 
               it { is_expected.to have_attributes(name: 'title2') }
-              it do
-                is_expected
-                  .to have_attributes(description: 'test description#2 data')
-              end
-              it do
-                is_expected
-                  .to have_attributes(initial_node_count: 5_735_018_494)
-              end
+              it { is_expected.to have_attributes(description: 'test description#2 data') }
+              it { is_expected.to have_attributes(initial_node_count: 5_735_018_494) }
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'nodeConfig' do
               #   # Add test code here
@@ -428,81 +346,45 @@ describe Puppet::Type.type(:gcontainer_cluster).provider(:google) do
               # it 'masterAuth' do
               #   # Add test code here
               # end
+              it { is_expected.to have_attributes(logging_service: 'logging.googleapis.com') }
+              it { is_expected.to have_attributes(monitoring_service: 'monitoring.googleapis.com') }
+              it { is_expected.to have_attributes(network: 'test network#2 data') }
               it do
-                is_expected
-                  .to have_attributes(logging_service: 'logging.googleapis.com')
-              end
-              it do
-                is_expected
-                  .to have_attributes(
-                    monitoring_service: 'monitoring.googleapis.com'
-                  )
-              end
-              it do
-                is_expected.to have_attributes(network: 'test network#2 data')
-              end
-              it do
-                is_expected
-                  .to have_attributes(
-                    cluster_ipv4_cidr: 'test cluster_ipv4_cidr#2 data'
-                  )
+                is_expected.to have_attributes(cluster_ipv4_cidr: 'test cluster_ipv4_cidr#2 data')
               end
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'addonsConfig' do
               #   # Add test code here
               # end
-              it do
-                is_expected
-                  .to have_attributes(subnetwork: 'test subnetwork#2 data')
-              end
+              it { is_expected.to have_attributes(subnetwork: 'test subnetwork#2 data') }
               it { is_expected.to have_attributes(location: %w[cc dd]) }
-              it do
-                is_expected.to have_attributes(endpoint: 'test endpoint#2 data')
-              end
+              it { is_expected.to have_attributes(endpoint: 'test endpoint#2 data') }
               it do
                 is_expected
                   .to have_attributes(
-                    initial_cluster_version:
-                    'test initial_cluster_version#2 data'
+                    initial_cluster_version: 'test initial_cluster_version#2 data'
                   )
               end
               it do
                 is_expected
-                  .to have_attributes(
-                    current_master_version: 'test current_master_version#2 data'
-                  )
+                  .to have_attributes(current_master_version: 'test current_master_version#2 data')
               end
               it do
                 is_expected
-                  .to have_attributes(
-                    current_node_version: 'test current_node_version#2 data'
-                  )
+                  .to have_attributes(current_node_version: 'test current_node_version#2 data')
               end
               it do
                 is_expected
-                  .to have_attributes(
-                    create_time: ::Time.parse('2138-01-25T03:55:48+00:00')
-                  )
+                  .to have_attributes(create_time: ::Time.parse('2138-01-25T03:55:48+00:00'))
               end
+              it { is_expected.to have_attributes(node_ipv4_cidr_size: 3_304_250_368) }
+              it do
+                is_expected.to have_attributes(services_ipv4_cidr: 'test services_ipv4_cidr#2 data')
+              end
+              it { is_expected.to have_attributes(current_node_count: 8_087_028_215) }
               it do
                 is_expected
-                  .to have_attributes(node_ipv4_cidr_size: 3_304_250_368)
-              end
-              it do
-                is_expected
-                  .to have_attributes(
-                    services_ipv4_cidr: 'test services_ipv4_cidr#2 data'
-                  )
-              end
-              it do
-                is_expected
-                  .to have_attributes(current_node_count: 8_087_028_215)
-              end
-              it do
-                is_expected
-                  .to have_attributes(
-                    expire_time: ::Time.parse('2197-03-12T23:08:05+00:00')
-                  )
+                  .to have_attributes(expire_time: ::Time.parse('2197-03-12T23:08:05+00:00'))
               end
             end
           end
@@ -695,14 +577,8 @@ describe Puppet::Type.type(:gcontainer_cluster).provider(:google) do
               end
 
               it { is_expected.to have_attributes(name: 'test name#0 data') }
-              it do
-                is_expected
-                  .to have_attributes(description: 'test description#0 data')
-              end
-              it do
-                is_expected
-                  .to have_attributes(initial_node_count: 1_911_672_831)
-              end
+              it { is_expected.to have_attributes(description: 'test description#0 data') }
+              it { is_expected.to have_attributes(initial_node_count: 1_911_672_831) }
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'nodeConfig' do
               #   # Add test code here
@@ -711,81 +587,45 @@ describe Puppet::Type.type(:gcontainer_cluster).provider(:google) do
               # it 'masterAuth' do
               #   # Add test code here
               # end
+              it { is_expected.to have_attributes(logging_service: 'logging.googleapis.com') }
+              it { is_expected.to have_attributes(monitoring_service: 'monitoring.googleapis.com') }
+              it { is_expected.to have_attributes(network: 'test network#0 data') }
               it do
-                is_expected
-                  .to have_attributes(logging_service: 'logging.googleapis.com')
-              end
-              it do
-                is_expected
-                  .to have_attributes(
-                    monitoring_service: 'monitoring.googleapis.com'
-                  )
-              end
-              it do
-                is_expected.to have_attributes(network: 'test network#0 data')
-              end
-              it do
-                is_expected
-                  .to have_attributes(
-                    cluster_ipv4_cidr: 'test cluster_ipv4_cidr#0 data'
-                  )
+                is_expected.to have_attributes(cluster_ipv4_cidr: 'test cluster_ipv4_cidr#0 data')
               end
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'addonsConfig' do
               #   # Add test code here
               # end
-              it do
-                is_expected
-                  .to have_attributes(subnetwork: 'test subnetwork#0 data')
-              end
+              it { is_expected.to have_attributes(subnetwork: 'test subnetwork#0 data') }
               it { is_expected.to have_attributes(location: %w[qq rr ss tt]) }
-              it do
-                is_expected.to have_attributes(endpoint: 'test endpoint#0 data')
-              end
+              it { is_expected.to have_attributes(endpoint: 'test endpoint#0 data') }
               it do
                 is_expected
                   .to have_attributes(
-                    initial_cluster_version:
-                    'test initial_cluster_version#0 data'
+                    initial_cluster_version: 'test initial_cluster_version#0 data'
                   )
               end
               it do
                 is_expected
-                  .to have_attributes(
-                    current_master_version: 'test current_master_version#0 data'
-                  )
+                  .to have_attributes(current_master_version: 'test current_master_version#0 data')
               end
               it do
                 is_expected
-                  .to have_attributes(
-                    current_node_version: 'test current_node_version#0 data'
-                  )
+                  .to have_attributes(current_node_version: 'test current_node_version#0 data')
               end
               it do
                 is_expected
-                  .to have_attributes(
-                    create_time: ::Time.parse('2026-01-08T17:18:36+00:00')
-                  )
+                  .to have_attributes(create_time: ::Time.parse('2026-01-08T17:18:36+00:00'))
               end
+              it { is_expected.to have_attributes(node_ipv4_cidr_size: 1_101_416_789) }
+              it do
+                is_expected.to have_attributes(services_ipv4_cidr: 'test services_ipv4_cidr#0 data')
+              end
+              it { is_expected.to have_attributes(current_node_count: 2_695_676_071) }
               it do
                 is_expected
-                  .to have_attributes(node_ipv4_cidr_size: 1_101_416_789)
-              end
-              it do
-                is_expected
-                  .to have_attributes(
-                    services_ipv4_cidr: 'test services_ipv4_cidr#0 data'
-                  )
-              end
-              it do
-                is_expected
-                  .to have_attributes(current_node_count: 2_695_676_071)
-              end
-              it do
-                is_expected
-                  .to have_attributes(
-                    expire_time: ::Time.parse('2045-09-24T15:42:41+00:00')
-                  )
+                  .to have_attributes(expire_time: ::Time.parse('2045-09-24T15:42:41+00:00'))
               end
             end
 
@@ -795,14 +635,8 @@ describe Puppet::Type.type(:gcontainer_cluster).provider(:google) do
               end
 
               it { is_expected.to have_attributes(name: 'test name#1 data') }
-              it do
-                is_expected
-                  .to have_attributes(description: 'test description#1 data')
-              end
-              it do
-                is_expected
-                  .to have_attributes(initial_node_count: 3_823_345_662)
-              end
+              it { is_expected.to have_attributes(description: 'test description#1 data') }
+              it { is_expected.to have_attributes(initial_node_count: 3_823_345_662) }
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'nodeConfig' do
               #   # Add test code here
@@ -813,71 +647,43 @@ describe Puppet::Type.type(:gcontainer_cluster).provider(:google) do
               # end
               it { is_expected.to have_attributes(logging_service: 'none') }
               it { is_expected.to have_attributes(monitoring_service: 'none') }
+              it { is_expected.to have_attributes(network: 'test network#1 data') }
               it do
-                is_expected.to have_attributes(network: 'test network#1 data')
-              end
-              it do
-                is_expected
-                  .to have_attributes(
-                    cluster_ipv4_cidr: 'test cluster_ipv4_cidr#1 data'
-                  )
+                is_expected.to have_attributes(cluster_ipv4_cidr: 'test cluster_ipv4_cidr#1 data')
               end
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'addonsConfig' do
               #   # Add test code here
               # end
-              it do
-                is_expected
-                  .to have_attributes(subnetwork: 'test subnetwork#1 data')
-              end
+              it { is_expected.to have_attributes(subnetwork: 'test subnetwork#1 data') }
               it { is_expected.to have_attributes(location: %w[jj kk ll]) }
-              it do
-                is_expected.to have_attributes(endpoint: 'test endpoint#1 data')
-              end
+              it { is_expected.to have_attributes(endpoint: 'test endpoint#1 data') }
               it do
                 is_expected
                   .to have_attributes(
-                    initial_cluster_version:
-                    'test initial_cluster_version#1 data'
+                    initial_cluster_version: 'test initial_cluster_version#1 data'
                   )
               end
               it do
                 is_expected
-                  .to have_attributes(
-                    current_master_version: 'test current_master_version#1 data'
-                  )
+                  .to have_attributes(current_master_version: 'test current_master_version#1 data')
               end
               it do
                 is_expected
-                  .to have_attributes(
-                    current_node_version: 'test current_node_version#1 data'
-                  )
+                  .to have_attributes(current_node_version: 'test current_node_version#1 data')
               end
               it do
                 is_expected
-                  .to have_attributes(
-                    create_time: ::Time.parse('2082-01-16T10:37:12+00:00')
-                  )
+                  .to have_attributes(create_time: ::Time.parse('2082-01-16T10:37:12+00:00'))
               end
+              it { is_expected.to have_attributes(node_ipv4_cidr_size: 2_202_833_579) }
+              it do
+                is_expected.to have_attributes(services_ipv4_cidr: 'test services_ipv4_cidr#1 data')
+              end
+              it { is_expected.to have_attributes(current_node_count: 5_391_352_143) }
               it do
                 is_expected
-                  .to have_attributes(node_ipv4_cidr_size: 2_202_833_579)
-              end
-              it do
-                is_expected
-                  .to have_attributes(
-                    services_ipv4_cidr: 'test services_ipv4_cidr#1 data'
-                  )
-              end
-              it do
-                is_expected
-                  .to have_attributes(current_node_count: 5_391_352_143)
-              end
-              it do
-                is_expected
-                  .to have_attributes(
-                    expire_time: ::Time.parse('2121-06-19T07:25:23+00:00')
-                  )
+                  .to have_attributes(expire_time: ::Time.parse('2121-06-19T07:25:23+00:00'))
               end
             end
 
@@ -887,14 +693,8 @@ describe Puppet::Type.type(:gcontainer_cluster).provider(:google) do
               end
 
               it { is_expected.to have_attributes(name: 'test name#2 data') }
-              it do
-                is_expected
-                  .to have_attributes(description: 'test description#2 data')
-              end
-              it do
-                is_expected
-                  .to have_attributes(initial_node_count: 5_735_018_494)
-              end
+              it { is_expected.to have_attributes(description: 'test description#2 data') }
+              it { is_expected.to have_attributes(initial_node_count: 5_735_018_494) }
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'nodeConfig' do
               #   # Add test code here
@@ -903,81 +703,45 @@ describe Puppet::Type.type(:gcontainer_cluster).provider(:google) do
               # it 'masterAuth' do
               #   # Add test code here
               # end
+              it { is_expected.to have_attributes(logging_service: 'logging.googleapis.com') }
+              it { is_expected.to have_attributes(monitoring_service: 'monitoring.googleapis.com') }
+              it { is_expected.to have_attributes(network: 'test network#2 data') }
               it do
-                is_expected
-                  .to have_attributes(logging_service: 'logging.googleapis.com')
-              end
-              it do
-                is_expected
-                  .to have_attributes(
-                    monitoring_service: 'monitoring.googleapis.com'
-                  )
-              end
-              it do
-                is_expected.to have_attributes(network: 'test network#2 data')
-              end
-              it do
-                is_expected
-                  .to have_attributes(
-                    cluster_ipv4_cidr: 'test cluster_ipv4_cidr#2 data'
-                  )
+                is_expected.to have_attributes(cluster_ipv4_cidr: 'test cluster_ipv4_cidr#2 data')
               end
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'addonsConfig' do
               #   # Add test code here
               # end
-              it do
-                is_expected
-                  .to have_attributes(subnetwork: 'test subnetwork#2 data')
-              end
+              it { is_expected.to have_attributes(subnetwork: 'test subnetwork#2 data') }
               it { is_expected.to have_attributes(location: %w[cc dd]) }
-              it do
-                is_expected.to have_attributes(endpoint: 'test endpoint#2 data')
-              end
+              it { is_expected.to have_attributes(endpoint: 'test endpoint#2 data') }
               it do
                 is_expected
                   .to have_attributes(
-                    initial_cluster_version:
-                    'test initial_cluster_version#2 data'
+                    initial_cluster_version: 'test initial_cluster_version#2 data'
                   )
               end
               it do
                 is_expected
-                  .to have_attributes(
-                    current_master_version: 'test current_master_version#2 data'
-                  )
+                  .to have_attributes(current_master_version: 'test current_master_version#2 data')
               end
               it do
                 is_expected
-                  .to have_attributes(
-                    current_node_version: 'test current_node_version#2 data'
-                  )
+                  .to have_attributes(current_node_version: 'test current_node_version#2 data')
               end
               it do
                 is_expected
-                  .to have_attributes(
-                    create_time: ::Time.parse('2138-01-25T03:55:48+00:00')
-                  )
+                  .to have_attributes(create_time: ::Time.parse('2138-01-25T03:55:48+00:00'))
               end
+              it { is_expected.to have_attributes(node_ipv4_cidr_size: 3_304_250_368) }
+              it do
+                is_expected.to have_attributes(services_ipv4_cidr: 'test services_ipv4_cidr#2 data')
+              end
+              it { is_expected.to have_attributes(current_node_count: 8_087_028_215) }
               it do
                 is_expected
-                  .to have_attributes(node_ipv4_cidr_size: 3_304_250_368)
-              end
-              it do
-                is_expected
-                  .to have_attributes(
-                    services_ipv4_cidr: 'test services_ipv4_cidr#2 data'
-                  )
-              end
-              it do
-                is_expected
-                  .to have_attributes(current_node_count: 8_087_028_215)
-              end
-              it do
-                is_expected
-                  .to have_attributes(
-                    expire_time: ::Time.parse('2197-03-12T23:08:05+00:00')
-                  )
+                  .to have_attributes(expire_time: ::Time.parse('2197-03-12T23:08:05+00:00'))
               end
             end
           end

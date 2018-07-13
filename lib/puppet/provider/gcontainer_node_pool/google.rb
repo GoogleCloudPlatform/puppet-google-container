@@ -75,15 +75,10 @@ Puppet::Type.type(:gcontainer_node_pool).provide(:google) do
   def self.fetch_to_hash(fetch, resource)
     {
       name: Google::Container::Property::String.api_munge(fetch['name']),
-      config:
-        Google::Container::Property::NodePoolConfig.api_munge(fetch['config']),
+      config: Google::Container::Property::NodePoolConfig.api_munge(fetch['config']),
       version: Google::Container::Property::String.api_munge(fetch['version']),
-      autoscaling: Google::Container::Property::NodePoolAutosca.api_munge(
-        fetch['autoscaling']
-      ),
-      management: Google::Container::Property::NodePoolManagem.api_munge(
-        fetch['management']
-      ),
+      autoscaling: Google::Container::Property::NodePoolAutosca.api_munge(fetch['autoscaling']),
+      management: Google::Container::Property::NodePoolManagem.api_munge(fetch['management']),
       initial_node_count: resource[:initial_node_count]
     }.reject { |_, v| v.nil? }
   end
@@ -193,8 +188,7 @@ Puppet::Type.type(:gcontainer_node_pool).provide(:google) do
     URI.join(
       'https://container.googleapis.com/v1/',
       expand_variables(
-        'projects/{{project}}/zones/{{zone}}' \
-        'clusters/{{cluster}}/nodePools/{{name}}',
+        'projects/{{project}}/zones/{{zone}}/clusters/{{cluster}}/nodePools/{{name}}',
         data
       )
     )

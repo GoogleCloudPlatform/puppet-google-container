@@ -88,12 +88,9 @@ module Google
       # Data is coming from the GCP API
       class NodePoolAutoscaApi < NodePoolAutosca
         def initialize(args)
-          @enabled =
-            Google::Container::Property::Boolean.api_munge(args['enabled'])
-          @min_node_count =
-            Google::Container::Property::Integer.api_munge(args['minNodeCount'])
-          @max_node_count =
-            Google::Container::Property::Integer.api_munge(args['maxNodeCount'])
+          @enabled = Google::Container::Property::Boolean.api_munge(args['enabled'])
+          @min_node_count = Google::Container::Property::Integer.api_munge(args['minNodeCount'])
+          @max_node_count = Google::Container::Property::Integer.api_munge(args['maxNodeCount'])
         end
       end
 
@@ -101,14 +98,11 @@ module Google
       # Data is coming from the Puppet manifest
       class NodePoolAutoscaCatalog < NodePoolAutosca
         def initialize(args)
-          @enabled =
-            Google::Container::Property::Boolean.unsafe_munge(args['enabled'])
-          @min_node_count = Google::Container::Property::Integer.unsafe_munge(
-            args['min_node_count']
-          )
-          @max_node_count = Google::Container::Property::Integer.unsafe_munge(
-            args['max_node_count']
-          )
+          @enabled = Google::Container::Property::Boolean.unsafe_munge(args['enabled'])
+          @min_node_count =
+            Google::Container::Property::Integer.unsafe_munge(args['min_node_count'])
+          @max_node_count =
+            Google::Container::Property::Integer.unsafe_munge(args['max_node_count'])
         end
       end
     end

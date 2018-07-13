@@ -117,29 +117,16 @@ module Google
       class ClusterNodeConfigApi < ClusterNodeConfig
         # rubocop:disable Metrics/MethodLength
         def initialize(args)
-          @machine_type =
-            Google::Container::Property::String.api_munge(args['machineType'])
-          @disk_size_gb =
-            Google::Container::Property::Integer.api_munge(args['diskSizeGb'])
-          @oauth_scopes = Google::Container::Property::StringArray.api_munge(
-            args['oauthScopes']
-          )
-          @service_account = Google::Container::Property::String.api_munge(
-            args['serviceAccount']
-          )
-          @metadata =
-            Google::Container::Property::NameValues.api_munge(args['metadata'])
-          @image_type =
-            Google::Container::Property::String.api_munge(args['imageType'])
-          @labels =
-            Google::Container::Property::NameValues.api_munge(args['labels'])
-          @local_ssd_count = Google::Container::Property::Integer.api_munge(
-            args['localSsdCount']
-          )
-          @tags =
-            Google::Container::Property::StringArray.api_munge(args['tags'])
-          @preemptible =
-            Google::Container::Property::Boolean.api_munge(args['preemptible'])
+          @machine_type = Google::Container::Property::String.api_munge(args['machineType'])
+          @disk_size_gb = Google::Container::Property::Integer.api_munge(args['diskSizeGb'])
+          @oauth_scopes = Google::Container::Property::StringArray.api_munge(args['oauthScopes'])
+          @service_account = Google::Container::Property::String.api_munge(args['serviceAccount'])
+          @metadata = Google::Container::Property::NameValues.api_munge(args['metadata'])
+          @image_type = Google::Container::Property::String.api_munge(args['imageType'])
+          @labels = Google::Container::Property::NameValues.api_munge(args['labels'])
+          @local_ssd_count = Google::Container::Property::Integer.api_munge(args['localSsdCount'])
+          @tags = Google::Container::Property::StringArray.api_munge(args['tags'])
+          @preemptible = Google::Container::Property::Boolean.api_munge(args['preemptible'])
         end
         # rubocop:enable Metrics/MethodLength
       end
@@ -149,33 +136,19 @@ module Google
       class ClusterNodeConfigCatalog < ClusterNodeConfig
         # rubocop:disable Metrics/MethodLength
         def initialize(args)
-          @machine_type = Google::Container::Property::String.unsafe_munge(
-            args['machine_type']
-          )
-          @disk_size_gb = Google::Container::Property::Integer.unsafe_munge(
-            args['disk_size_gb']
-          )
-          @oauth_scopes = Google::Container::Property::StringArray.unsafe_munge(
-            args['oauth_scopes']
-          )
-          @service_account = Google::Container::Property::String.unsafe_munge(
-            args['service_account']
-          )
-          @metadata = Google::Container::Property::NameValues.unsafe_munge(
-            args['metadata']
-          )
-          @image_type =
-            Google::Container::Property::String.unsafe_munge(args['image_type'])
-          @labels =
-            Google::Container::Property::NameValues.unsafe_munge(args['labels'])
-          @local_ssd_count = Google::Container::Property::Integer.unsafe_munge(
-            args['local_ssd_count']
-          )
-          @tags =
-            Google::Container::Property::StringArray.unsafe_munge(args['tags'])
-          @preemptible = Google::Container::Property::Boolean.unsafe_munge(
-            args['preemptible']
-          )
+          @machine_type = Google::Container::Property::String.unsafe_munge(args['machine_type'])
+          @disk_size_gb = Google::Container::Property::Integer.unsafe_munge(args['disk_size_gb'])
+          @oauth_scopes =
+            Google::Container::Property::StringArray.unsafe_munge(args['oauth_scopes'])
+          @service_account =
+            Google::Container::Property::String.unsafe_munge(args['service_account'])
+          @metadata = Google::Container::Property::NameValues.unsafe_munge(args['metadata'])
+          @image_type = Google::Container::Property::String.unsafe_munge(args['image_type'])
+          @labels = Google::Container::Property::NameValues.unsafe_munge(args['labels'])
+          @local_ssd_count =
+            Google::Container::Property::Integer.unsafe_munge(args['local_ssd_count'])
+          @tags = Google::Container::Property::StringArray.unsafe_munge(args['tags'])
+          @preemptible = Google::Container::Property::Boolean.unsafe_munge(args['preemptible'])
         end
         # rubocop:enable Metrics/MethodLength
       end

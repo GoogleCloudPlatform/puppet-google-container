@@ -128,11 +128,9 @@ gcontainer_kube_config { '/home/nelsona/.puppetlabs/etc/puppet/kubernetes.conf':
     A Google Container Engine cluster.
 * [`gcontainer_node_pool`][]:
     NodePool contains the name and configuration for a cluster's node pool.
-    Node pools are a set of nodes (i.e. VM's), with a common configuration
-    and
+    Node pools are a set of nodes (i.e. VM's), with a common configuration and
     specification, under the control of the cluster master. They may have a
-    set of Kubernetes labels applied to them, which may be used to
-    reference
+    set of Kubernetes labels applied to them, which may be used to reference
     them during pod scheduling. They may also be resized up or down, to
     accommodate the workload.
 * [`gcontainer_kube_config`][]:
