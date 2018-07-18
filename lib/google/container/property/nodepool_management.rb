@@ -88,14 +88,10 @@ module Google
       # Data is coming from the GCP API
       class NodePoolManagemApi < NodePoolManagem
         def initialize(args)
-          @auto_upgrade =
-            Google::Container::Property::Boolean.api_munge(args['autoUpgrade'])
-          @auto_repair =
-            Google::Container::Property::Boolean.api_munge(args['autoRepair'])
+          @auto_upgrade = Google::Container::Property::Boolean.api_munge(args['autoUpgrade'])
+          @auto_repair = Google::Container::Property::Boolean.api_munge(args['autoRepair'])
           @upgrade_options =
-            Google::Container::Property::NodePoolUpgraOptio.api_munge(
-              args['upgradeOptions']
-            )
+            Google::Container::Property::NodePoolUpgraOptio.api_munge(args['upgradeOptions'])
         end
       end
 
@@ -103,16 +99,10 @@ module Google
       # Data is coming from the Puppet manifest
       class NodePoolManagemCatalog < NodePoolManagem
         def initialize(args)
-          @auto_upgrade = Google::Container::Property::Boolean.unsafe_munge(
-            args['auto_upgrade']
-          )
-          @auto_repair = Google::Container::Property::Boolean.unsafe_munge(
-            args['auto_repair']
-          )
+          @auto_upgrade = Google::Container::Property::Boolean.unsafe_munge(args['auto_upgrade'])
+          @auto_repair = Google::Container::Property::Boolean.unsafe_munge(args['auto_repair'])
           @upgrade_options =
-            Google::Container::Property::NodePoolUpgraOptio.unsafe_munge(
-              args['upgrade_options']
-            )
+            Google::Container::Property::NodePoolUpgraOptio.unsafe_munge(args['upgrade_options'])
         end
       end
     end

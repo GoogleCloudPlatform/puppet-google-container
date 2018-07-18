@@ -40,12 +40,11 @@ require 'puppet'
 
 Puppet::Type.newtype(:gcontainer_node_pool) do
   @doc = <<-DOC
-    NodePool contains the name and configuration for a cluster's node pool.
-    Node pools are a set of nodes (i.e. VM's), with a common configuration and
-    specification, under the control of the cluster master. They may have a set
-    of Kubernetes labels applied to them, which may be used to reference them
-    during pod scheduling. They may also be resized up or down, to accommodate
-    the workload.
+    NodePool contains the name and configuration for a cluster's node pool. Node pools are a set of
+    nodes (i.e. VM's), with a common configuration and specification, under the control of the
+    cluster master. They may have a set of Kubernetes labels applied to them, which may be used to
+    reference them during pod scheduling. They may also be resized up or down, to accommodate the
+    workload.
   DOC
 
   autorequire(:gauth_credential) do
@@ -94,12 +93,11 @@ Puppet::Type.newtype(:gcontainer_node_pool) do
     desc 'The node configuration of the pool.'
   end
 
-  newproperty(:initial_node_count,
-              parent: Google::Container::Property::Integer) do
+  newproperty(:initial_node_count, parent: Google::Container::Property::Integer) do
     desc <<-DOC
-      The initial node count for the pool. You must ensure that your Compute
-      Engine resource quota is sufficient for this number of instances. You
-      must also have available firewall and routes quota.
+      The initial node count for the pool. You must ensure that your Compute Engine resource quota
+      is sufficient for this number of instances. You must also have available firewall and routes
+      quota.
     DOC
   end
 
@@ -107,16 +105,14 @@ Puppet::Type.newtype(:gcontainer_node_pool) do
     desc 'The version of the Kubernetes of this node. (output only)'
   end
 
-  newproperty(:autoscaling,
-              parent: Google::Container::Property::NodePoolAutosca) do
+  newproperty(:autoscaling, parent: Google::Container::Property::NodePoolAutosca) do
     desc <<-DOC
-      Autoscaler configuration for this NodePool. Autoscaler is enabled only if
-      a valid configuration is present.
+      Autoscaler configuration for this NodePool. Autoscaler is enabled only if a valid
+      configuration is present.
     DOC
   end
 
-  newproperty(:management,
-              parent: Google::Container::Property::NodePoolManagem) do
+  newproperty(:management, parent: Google::Container::Property::NodePoolManagem) do
     desc 'Management configuration for this NodePool.'
   end
 end

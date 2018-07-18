@@ -51,15 +51,9 @@ describe Puppet::Type.type(:gcontainer_node_pool).provider(:google) do
               allow(Time).to receive(:now).and_return(
                 Time.new(2017, 1, 2, 3, 4, 5)
               )
-              expect_network_get_success 1,
-                                         name: 'title0',
-                                         cluster: 'test name#0 data'
-              expect_network_get_success 2,
-                                         name: 'title1',
-                                         cluster: 'test name#1 data'
-              expect_network_get_success 3,
-                                         name: 'title2',
-                                         cluster: 'test name#2 data'
+              expect_network_get_success 1, name: 'title0', cluster: 'test name#0 data'
+              expect_network_get_success 2, name: 'title1', cluster: 'test name#1 data'
+              expect_network_get_success 3, name: 'title2', cluster: 'test name#2 data'
               expect_network_get_success_cluster 1
               expect_network_get_success_cluster 2
               expect_network_get_success_cluster 3
@@ -236,13 +230,8 @@ describe Puppet::Type.type(:gcontainer_node_pool).provider(:google) do
               # it 'config' do
               #   # Add test code here
               # end
-              it do
-                is_expected
-                  .to have_attributes(initial_node_count: 1_911_672_831)
-              end
-              it do
-                is_expected.to have_attributes(version: 'test version#0 data')
-              end
+              it { is_expected.to have_attributes(initial_node_count: 1_911_672_831) }
+              it { is_expected.to have_attributes(version: 'test version#0 data') }
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'autoscaling' do
               #   # Add test code here
@@ -263,13 +252,8 @@ describe Puppet::Type.type(:gcontainer_node_pool).provider(:google) do
               # it 'config' do
               #   # Add test code here
               # end
-              it do
-                is_expected
-                  .to have_attributes(initial_node_count: 3_823_345_662)
-              end
-              it do
-                is_expected.to have_attributes(version: 'test version#1 data')
-              end
+              it { is_expected.to have_attributes(initial_node_count: 3_823_345_662) }
+              it { is_expected.to have_attributes(version: 'test version#1 data') }
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'autoscaling' do
               #   # Add test code here
@@ -290,13 +274,8 @@ describe Puppet::Type.type(:gcontainer_node_pool).provider(:google) do
               # it 'config' do
               #   # Add test code here
               # end
-              it do
-                is_expected
-                  .to have_attributes(initial_node_count: 5_735_018_494)
-              end
-              it do
-                is_expected.to have_attributes(version: 'test version#2 data')
-              end
+              it { is_expected.to have_attributes(initial_node_count: 5_735_018_494) }
+              it { is_expected.to have_attributes(version: 'test version#2 data') }
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'autoscaling' do
               #   # Add test code here
@@ -506,13 +485,8 @@ describe Puppet::Type.type(:gcontainer_node_pool).provider(:google) do
               # it 'config' do
               #   # Add test code here
               # end
-              it do
-                is_expected
-                  .to have_attributes(initial_node_count: 1_911_672_831)
-              end
-              it do
-                is_expected.to have_attributes(version: 'test version#0 data')
-              end
+              it { is_expected.to have_attributes(initial_node_count: 1_911_672_831) }
+              it { is_expected.to have_attributes(version: 'test version#0 data') }
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'autoscaling' do
               #   # Add test code here
@@ -533,13 +507,8 @@ describe Puppet::Type.type(:gcontainer_node_pool).provider(:google) do
               # it 'config' do
               #   # Add test code here
               # end
-              it do
-                is_expected
-                  .to have_attributes(initial_node_count: 3_823_345_662)
-              end
-              it do
-                is_expected.to have_attributes(version: 'test version#1 data')
-              end
+              it { is_expected.to have_attributes(initial_node_count: 3_823_345_662) }
+              it { is_expected.to have_attributes(version: 'test version#1 data') }
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'autoscaling' do
               #   # Add test code here
@@ -560,13 +529,8 @@ describe Puppet::Type.type(:gcontainer_node_pool).provider(:google) do
               # it 'config' do
               #   # Add test code here
               # end
-              it do
-                is_expected
-                  .to have_attributes(initial_node_count: 5_735_018_494)
-              end
-              it do
-                is_expected.to have_attributes(version: 'test version#2 data')
-              end
+              it { is_expected.to have_attributes(initial_node_count: 5_735_018_494) }
+              it { is_expected.to have_attributes(version: 'test version#2 data') }
               # TODO(nelsonjr): Implement complex nested property object test.
               # it 'autoscaling' do
               #   # Add test code here
@@ -627,9 +591,7 @@ describe Puppet::Type.type(:gcontainer_node_pool).provider(:google) do
         # Ensure present: resource missing, ignore, no name, pass
         context 'title == name (pass)' do
           before(:each) do
-            expect_network_get_failed 1,
-                                      name: 'title0',
-                                      cluster: 'test name#0 data'
+            expect_network_get_failed 1, name: 'title0', cluster: 'test name#0 data'
             expect_network_create \
               1,
               {
@@ -670,9 +632,7 @@ describe Puppet::Type.type(:gcontainer_node_pool).provider(:google) do
               },
               name: 'title0',
               cluster: 'test name#0 data'
-            expect_network_get_async 1,
-                                     name: 'title0',
-                                     cluster: 'test name#0 data'
+            expect_network_get_async 1, name: 'title0', cluster: 'test name#0 data'
             expect_network_get_success_cluster 1
           end
 
@@ -869,9 +829,7 @@ describe Puppet::Type.type(:gcontainer_node_pool).provider(:google) do
         # Ensure absent: resource missing, ignore, no name, pass
         context 'title == name (pass)' do
           before(:each) do
-            expect_network_get_failed 1,
-                                      name: 'title0',
-                                      cluster: 'test name#0 data'
+            expect_network_get_failed 1, name: 'title0', cluster: 'test name#0 data'
             expect_network_get_success_cluster 1
           end
 
@@ -964,13 +922,9 @@ describe Puppet::Type.type(:gcontainer_node_pool).provider(:google) do
         # Ensure absent: resource exists, ignore, no name, pass
         context 'title == name (pass)' do
           before(:each) do
-            expect_network_get_success 1,
-                                       name: 'title0',
-                                       cluster: 'test name#0 data'
+            expect_network_get_success 1, name: 'title0', cluster: 'test name#0 data'
             expect_network_delete 1, 'title0', cluster: 'test name#0 data'
-            expect_network_get_async 1,
-                                     name: 'title0',
-                                     cluster: 'test name#0 data'
+            expect_network_get_async 1, name: 'title0', cluster: 'test name#0 data'
             expect_network_get_success_cluster 1
           end
 
@@ -1300,8 +1254,7 @@ describe Puppet::Type.type(:gcontainer_node_pool).provider(:google) do
     URI.join(
       'https://container.googleapis.com/v1/',
       expand_variables(
-        'projects/{{project}}/zones/{{zone}}' \
-        'clusters/{{cluster}}/nodePools/{{name}}',
+        'projects/{{project}}/zones/{{zone}}/clusters/{{cluster}}/nodePools/{{name}}',
         data
       )
     )
