@@ -159,7 +159,8 @@ Puppet::Type.type(:gcontainer_cluster).provide(:google) do
     {
       endpoint: @fetched['endpoint'],
       master_auth: @fetched['masterAuth'],
-      name: resource[:name]
+      name: resource[:name],
+      project: resource[:project]
     }
   end
 
