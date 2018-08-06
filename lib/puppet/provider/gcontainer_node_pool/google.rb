@@ -77,8 +77,8 @@ Puppet::Type.type(:gcontainer_node_pool).provide(:google) do
       name: Google::Container::Property::String.api_munge(fetch['name']),
       config: Google::Container::Property::NodePoolConfig.api_munge(fetch['config']),
       version: Google::Container::Property::String.api_munge(fetch['version']),
-      autoscaling: Google::Container::Property::NodePoolAutosca.api_munge(fetch['autoscaling']),
-      management: Google::Container::Property::NodePoolManagem.api_munge(fetch['management']),
+      autoscaling: Google::Container::Property::NodePoolAutoscaling.api_munge(fetch['autoscaling']),
+      management: Google::Container::Property::NodePoolManagement.api_munge(fetch['management']),
       initial_node_count: resource[:initial_node_count]
     }.reject { |_, v| v.nil? }
   end

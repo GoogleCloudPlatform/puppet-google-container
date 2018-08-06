@@ -31,7 +31,7 @@ module Google
   module Container
     module Data
       # A class to manage data for Management for node_pool.
-      class NodePoolManagem
+      class NodePoolManagement
         include Comparable
 
         attr_reader :auto_upgrade
@@ -55,7 +55,7 @@ module Google
         end
 
         def ==(other)
-          return false unless other.is_a? NodePoolManagem
+          return false unless other.is_a? NodePoolManagement
           compare_fields(other).each do |compare|
             next if compare[:self].nil? || compare[:other].nil?
             return false if compare[:self] != compare[:other]
@@ -64,7 +64,7 @@ module Google
         end
 
         def <=>(other)
-          return false unless other.is_a? NodePoolManagem
+          return false unless other.is_a? NodePoolManagement
           compare_fields(other).each do |compare|
             next if compare[:self].nil? || compare[:other].nil?
             result = compare[:self] <=> compare[:other]
@@ -84,32 +84,33 @@ module Google
         end
       end
 
-      # Manages a NodePoolManagem nested object
+      # Manages a NodePoolManagement nested object
       # Data is coming from the GCP API
-      class NodePoolManagemApi < NodePoolManagem
+      class NodePoolManagementApi < NodePoolManagement
         def initialize(args)
           @auto_upgrade = Google::Container::Property::Boolean.api_munge(args['autoUpgrade'])
           @auto_repair = Google::Container::Property::Boolean.api_munge(args['autoRepair'])
           @upgrade_options =
-            Google::Container::Property::NodePoolUpgraOptio.api_munge(args['upgradeOptions'])
+            Google::Container::Property::NodePoolUpgradeOptions.api_munge(args['upgradeOptions'])
         end
       end
 
-      # Manages a NodePoolManagem nested object
+      # Manages a NodePoolManagement nested object
       # Data is coming from the Puppet manifest
-      class NodePoolManagemCatalog < NodePoolManagem
+      class NodePoolManagementCatalog < NodePoolManagement
         def initialize(args)
           @auto_upgrade = Google::Container::Property::Boolean.unsafe_munge(args['auto_upgrade'])
           @auto_repair = Google::Container::Property::Boolean.unsafe_munge(args['auto_repair'])
-          @upgrade_options =
-            Google::Container::Property::NodePoolUpgraOptio.unsafe_munge(args['upgrade_options'])
+          @upgrade_options = Google::Container::Property::NodePoolUpgradeOptions.unsafe_munge(
+            args['upgrade_options']
+          )
         end
       end
     end
 
     module Property
       # A class to manage input to Management for node_pool.
-      class NodePoolManagem < Google::Container::Property::Base
+      class NodePoolManagement < Google::Container::Property::Base
         # Used for parsing Puppet catalog
         def unsafe_munge(value)
           self.class.unsafe_munge(value)
@@ -118,13 +119,13 @@ module Google
         # Used for parsing Puppet catalog
         def self.unsafe_munge(value)
           return if value.nil?
-          Data::NodePoolManagemCatalog.new(value)
+          Data::NodePoolManagementCatalog.new(value)
         end
 
         # Used for parsing GCP API responses
         def self.api_munge(value)
           return if value.nil?
-          Data::NodePoolManagemApi.new(value)
+          Data::NodePoolManagementApi.new(value)
         end
       end
     end
