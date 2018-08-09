@@ -105,14 +105,14 @@ Puppet::Type.newtype(:gcontainer_node_pool) do
     desc 'The version of the Kubernetes of this node. (output only)'
   end
 
-  newproperty(:autoscaling, parent: Google::Container::Property::NodePoolAutosca) do
+  newproperty(:autoscaling, parent: Google::Container::Property::NodePoolAutoscaling) do
     desc <<-DOC
       Autoscaler configuration for this NodePool. Autoscaler is enabled only if a valid
       configuration is present.
     DOC
   end
 
-  newproperty(:management, parent: Google::Container::Property::NodePoolManagem) do
+  newproperty(:management, parent: Google::Container::Property::NodePoolManagement) do
     desc 'Management configuration for this NodePool.'
   end
 end

@@ -31,7 +31,7 @@ module Google
   module Container
     module Data
       # A class to manage data for Autoscaling for node_pool.
-      class NodePoolAutosca
+      class NodePoolAutoscaling
         include Comparable
 
         attr_reader :enabled
@@ -55,7 +55,7 @@ module Google
         end
 
         def ==(other)
-          return false unless other.is_a? NodePoolAutosca
+          return false unless other.is_a? NodePoolAutoscaling
           compare_fields(other).each do |compare|
             next if compare[:self].nil? || compare[:other].nil?
             return false if compare[:self] != compare[:other]
@@ -64,7 +64,7 @@ module Google
         end
 
         def <=>(other)
-          return false unless other.is_a? NodePoolAutosca
+          return false unless other.is_a? NodePoolAutoscaling
           compare_fields(other).each do |compare|
             next if compare[:self].nil? || compare[:other].nil?
             result = compare[:self] <=> compare[:other]
@@ -84,9 +84,9 @@ module Google
         end
       end
 
-      # Manages a NodePoolAutosca nested object
+      # Manages a NodePoolAutoscaling nested object
       # Data is coming from the GCP API
-      class NodePoolAutoscaApi < NodePoolAutosca
+      class NodePoolAutoscalingApi < NodePoolAutoscaling
         def initialize(args)
           @enabled = Google::Container::Property::Boolean.api_munge(args['enabled'])
           @min_node_count = Google::Container::Property::Integer.api_munge(args['minNodeCount'])
@@ -94,9 +94,9 @@ module Google
         end
       end
 
-      # Manages a NodePoolAutosca nested object
+      # Manages a NodePoolAutoscaling nested object
       # Data is coming from the Puppet manifest
-      class NodePoolAutoscaCatalog < NodePoolAutosca
+      class NodePoolAutoscalingCatalog < NodePoolAutoscaling
         def initialize(args)
           @enabled = Google::Container::Property::Boolean.unsafe_munge(args['enabled'])
           @min_node_count =
@@ -109,7 +109,7 @@ module Google
 
     module Property
       # A class to manage input to Autoscaling for node_pool.
-      class NodePoolAutosca < Google::Container::Property::Base
+      class NodePoolAutoscaling < Google::Container::Property::Base
         # Used for parsing Puppet catalog
         def unsafe_munge(value)
           self.class.unsafe_munge(value)
@@ -118,13 +118,13 @@ module Google
         # Used for parsing Puppet catalog
         def self.unsafe_munge(value)
           return if value.nil?
-          Data::NodePoolAutoscaCatalog.new(value)
+          Data::NodePoolAutoscalingCatalog.new(value)
         end
 
         # Used for parsing GCP API responses
         def self.api_munge(value)
           return if value.nil?
-          Data::NodePoolAutoscaApi.new(value)
+          Data::NodePoolAutoscalingApi.new(value)
         end
       end
     end

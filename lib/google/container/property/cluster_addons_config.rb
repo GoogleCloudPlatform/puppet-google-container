@@ -84,11 +84,13 @@ module Google
       # Data is coming from the GCP API
       class ClusterAddonsConfigApi < ClusterAddonsConfig
         def initialize(args)
-          @http_load_balancing =
-            Google::Container::Property::ClustHttpLoadBalan.api_munge(args['httpLoadBalancing'])
-          @horizontal_pod_autoscaling = Google::Container::Property::ClustHorizPodAutos.api_munge(
-            args['horizontalPodAutoscaling']
+          @http_load_balancing = Google::Container::Property::ClusterHttpLoadBalancing.api_munge(
+            args['httpLoadBalancing']
           )
+          @horizontal_pod_autoscaling =
+            Google::Container::Property::ClusterHorizontalPodAutoscaling.api_munge(
+              args['horizontalPodAutoscaling']
+            )
         end
       end
 
@@ -96,11 +98,11 @@ module Google
       # Data is coming from the Puppet manifest
       class ClusterAddonsConfigCatalog < ClusterAddonsConfig
         def initialize(args)
-          @http_load_balancing = Google::Container::Property::ClustHttpLoadBalan.unsafe_munge(
+          @http_load_balancing = Google::Container::Property::ClusterHttpLoadBalancing.unsafe_munge(
             args['http_load_balancing']
           )
           @horizontal_pod_autoscaling =
-            Google::Container::Property::ClustHorizPodAutos.unsafe_munge(
+            Google::Container::Property::ClusterHorizontalPodAutoscaling.unsafe_munge(
               args['horizontal_pod_autoscaling']
             )
         end
