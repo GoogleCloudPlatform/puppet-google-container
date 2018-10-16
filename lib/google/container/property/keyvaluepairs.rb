@@ -31,7 +31,7 @@ module Google
   module Container
     module Property
       # A Puppet property that holds a string
-      class NameValues < Google::Container::Property::Base
+      class KeyValuePairs < Google::Container::Property::Base
         def self.api_munge(value)
           return if value.nil?
           value

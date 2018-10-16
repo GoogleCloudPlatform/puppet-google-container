@@ -233,10 +233,10 @@ gcontainer_cluster { 'id-of-resource':
   node_config             => {
     disk_size_gb    => integer,
     image_type      => string,
-    labels          => namevalues,
+    labels          => keyvaluepairs,
     local_ssd_count => integer,
     machine_type    => string,
-    metadata        => namevalues,
+    metadata        => keyvaluepairs,
     oauth_scopes    => [
       string,
       ...
@@ -540,10 +540,10 @@ gcontainer_node_pool { 'id-of-resource':
   config             => {
     disk_size_gb    => integer,
     image_type      => string,
-    labels          => namevalues,
+    labels          => keyvaluepairs,
     local_ssd_count => integer,
     machine_type    => string,
-    metadata        => namevalues,
+    metadata        => keyvaluepairs,
     oauth_scopes    => [
       string,
       ...

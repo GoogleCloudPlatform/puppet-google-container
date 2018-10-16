@@ -28,7 +28,7 @@
 require 'google/container/property/boolean'
 require 'google/container/property/cluster_name'
 require 'google/container/property/integer'
-require 'google/container/property/namevalues'
+require 'google/container/property/keyvaluepairs'
 require 'google/container/property/nodepool_autoscaling'
 require 'google/container/property/nodepool_config'
 require 'google/container/property/nodepool_management'

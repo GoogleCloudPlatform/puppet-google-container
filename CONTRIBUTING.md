@@ -115,7 +115,7 @@ puppet-codegen:
   * lib/google/container/property/cluster_node_config.rb
   * lib/google/container/property/enum.rb
   * lib/google/container/property/integer.rb
-  * lib/google/container/property/namevalues.rb
+  * lib/google/container/property/keyvaluepairs.rb
   * lib/google/container/property/nodepool_autoscaling.rb
   * lib/google/container/property/nodepool_config.rb
   * lib/google/container/property/nodepool_management.rb
